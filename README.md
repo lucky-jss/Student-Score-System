@@ -1,2 +1,57 @@
-# Student-Score-System
-A Java and MySQL based student score management system.
+# Student Score System
+
+## 📌 项目简介
+基于 Java + MySQL + Tomcat 开发的学生成绩管理系统，实现学生信息管理、成绩发布与查询功能。
+
+---
+
+## 🧱 技术栈
+- Java
+- MySQL 8.0
+- JDBC
+- Maven
+- Tomcat
+- SQL优化
+
+---
+
+## 🚀 核心功能
+- 学生成绩录入与查询
+- 学生信息管理
+- 基于数据库触发器的审计日志
+- SQL索引优化与性能分析
+- EXPLAIN执行计划优化
+
+---
+
+## 💡 我的负责模块（重点）
+
+### 1️⃣ 数据库审计系统设计
+- 使用 MySQL Trigger 实现数据变更审计（INSERT / UPDATE / DELETE）
+- 实现“无侵入式日志记录机制”
+
+### 2️⃣ 日志结构设计
+- 使用 JSON 存储变更数据，提高扩展性
+- 支持后续日志分析与审计扩展
+
+### 3️⃣ SQL性能优化
+- 基于业务场景设计索引结构
+- 使用 EXPLAIN 分析SQL执行计划
+- 优化查询性能瓶颈
+
+---
+
+## 📸 项目截图
+见 `screenshots/` 目录
+
+---
+
+## 🧠 项目亮点
+- 模拟企业级数据库审计设计
+- 掌握 MySQL Trigger 实战应用
+- SQL性能优化实践
+- 标准三层结构设计思维
+
+---
+
+## 📂 项目结构
