@@ -1,0 +1,32 @@
+# score_system 成绩系统 MySQL 备份恢复方案
+数据库名：score_system
+
+## 一、手动备份命令（CMD 执行）
+### 全库备份：
+```plaintext
+mysqldump -uadmin_db -padm123456 --databases score_system --single-transaction --default-character-set=utf8mb4 > D:/score_back/score_back_$(date).sql
+单表备份：
+mysqldump -uadmin_db -padm123456 score_system scores > D:/score_back/score_only.sql
+二、恢复命令
+全库恢复：
+mysql -uadmin_db -padm123456 < D:/score_back/score_back_xxx.sql
+单表恢复：
+mysql -uadmin_db -padm123456 score_system < D:/score_back/score_only.sql
+三、Windows 定时备份配置
+新建文件夹 D:\score_back
+使用任务计划程序每日凌晨 2 点执行 backup_all.bat
+自动保留 30 天备份文件，超期自动删除
+四、故障恢复流程
+关闭 Tomcat 停止系统访问
+执行恢复脚本还原数据
+重新执行视图 + 权限脚本（防止视图账号丢失）
+重启项目校验成绩数据、角色视图查询
+五、DB.java 调用视图代码示例
+// 查询学生本人成绩视图
+List<Map<String,Object>> stuScore = DB.executeQuery("SELECT * FROM v_student_my_score WHERE 学号 = ?", studentNo);
+
+// 查询教师班级成绩视图
+List<Map<String,Object>> teaScore = DB.executeQuery("SELECT * FROM v_teacher_my_class_score WHERE 教师账号 = ?", username);
+
+// 管理员查看全部成绩视图
+List<Map<String,Object>> allScore = DB.executeQuery("SELECT * FROM v_admin_full_score");
